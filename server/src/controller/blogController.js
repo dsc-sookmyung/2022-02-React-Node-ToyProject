@@ -11,24 +11,6 @@ const getAllBlog = async (req, res)=>{
 
 };
 
-const testBlog = async (req, res)=>{
-    try{
-        const testBlog = await blogService.testBlog();
-        return res.status(200).json({
-            status: 200,
-            success: true,
-            message: '글 추가 성공',
-            data: testBlog,
-        });
-    }catch (error){
-        console.log(error);
-        res.status(500).json({
-            status: 500,
-            success: false,
-            message: '서버 내부 오류',
-        });
-    }
-};
 /**
  * @route PUT /blog/:blogId
  * @desc update post
@@ -86,7 +68,6 @@ const getBlogByBlogId = async (req, res)=>{
 
 
 const blogController={
-    testBlog,
     createBlog,
     getAllBlog,
     updateBlog,

@@ -30,16 +30,8 @@ const deleteBlog = async (blogId) => {
     }
 };
 
-const testBlog = async () =>{
-    await Blog.insertMany( [
-        { "user_id": "a", "title": "11111111", "image": "A", "content": "111111111111111111" },
-        { "user_id": "j", "title": "222222", "image": "A", "content": "22222222222222" },
-        { "user_id": "k", "title": "333333", "image": "A", "content": "33333333333333" },
-    ]);
-}
 
 const blogController={
-    testBlog,
     updateBlog,
     deleteBlog,
 };
