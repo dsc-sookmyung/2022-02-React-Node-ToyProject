@@ -36,9 +36,29 @@ const updateBlog = async (req, res)=>{
     }
 };
 
+/**
+ * @route DELETE /blog/
+ * @desc delete post
+ */
 const deleteBlog = async (req, res)=>{
-
+    const { blogId } = req.params;
+    try{
+        const deleteBlog = await blogService.deleteBlog(blogId);
+        return res.status(200).json({
+            status: 200,
+            success: true,
+            message: '글 삭제 성공',
+        });
+    }catch (error){
+        console.log(error);
+        res.status(500).json({
+            status: 500,
+            success: false,
+            message: '서버 내부 오류',
+        });
+    }
 };
+
 const getBlogByUser = async (req, res)=>{
 
 };
