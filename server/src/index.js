@@ -1,9 +1,12 @@
 import express from "express";
 import router from "./router/index.js";
 import config from "./config/index.js";
+import connectDB from './Loaders/db.js';
 
 const app = express();
 const PORT = 3000;
+
+connectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

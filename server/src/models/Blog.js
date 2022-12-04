@@ -1,10 +1,7 @@
 import mongoose from "mongoose";
 
 const BlogSchema = new mongoose.Schema({
-    _id: { //dqfault
-        type: String, //변경 가능
-        required: true
-    }, // default
+    _id: mongoose.Schema.Types.ObjectId, //default
     user_id: { 
         type: String, //변경 가능
         required: true
