@@ -11,7 +11,7 @@ const loginUser = async (req, res)=>{
 const updateUser = async (req, res)=>{
 
 }
- 
+
 
 const userController={
     signupUser,
