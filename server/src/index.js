@@ -11,6 +11,8 @@ connectDB();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
+app.use("/static", express.static("src/public"));
+
 app.use("/", router);
 
 app.get("/",(req, res, next)=>{
