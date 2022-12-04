@@ -21,7 +21,8 @@ const updateBlog = async (blogId, title, image, content) => {
 const deleteBlog = async (blogId) => {
     try{
         blogId = mongoose.Types.ObjectId(blogId);
-        const  image = await Blog.findById(blogId).select("image");
+        const  image = await Blog.findById(blogId, {_id:0, image:1});
+        console.log(image);
         //s3에 저장된 이미지 삭제
         await Blog.findByIdAndDelete(blogId);
     }catch(error){
@@ -30,10 +31,21 @@ const deleteBlog = async (blogId) => {
     }
 };
 
+const getBlogByUser = async (userId) => {
+    try{
+        const data = await Blog.find({user_id : userId}).sort({ created_at: -1 });
+        return data;
+    }catch(error){
+        console.log(error);
+        throw error;
+    }
+}
+
 
 const blogController={
     updateBlog,
     deleteBlog,
+    getBlogByUser,
 };
 
 export default blogController;
