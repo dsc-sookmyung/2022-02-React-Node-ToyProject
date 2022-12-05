@@ -28,7 +28,13 @@ const updateBlog = async (blogId, userId, title, image, content) => {
       image: image, //이미지 업데이트 기능 추가
       content: content,
     };
-    const data = await Blog.findByIdAndUpdate(blogId, updateData, { new: true });
+    const data = await Blog.findByIdAndUpdate(
+      {
+        _id: blogId,
+      },
+      updateData,
+      { new: true }
+    );
     return data;
   } catch (error) {
     console.log(error);

@@ -31,7 +31,32 @@ const createBlog = async (req, res) => {
   }
 };
 
-const getAllBlog = async (req, res) => {};
+const getAllBlog = async (req, res) => {
+  try {
+    const allBlog = await blogService.getAllBlog();
+    if (!allBlog) {
+      return res.status(200).json({
+        status: 204,
+        success: true,
+        message: "글이 없습니다.",
+      });
+    } else {
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "글 목록 조회 성공",
+        data: allBlog,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      status: 500,
+      success: false,
+      message: "서버 내부 오류",
+    });
+  }
+};
 
 /**
  * @route PUT /blog/:blogId
