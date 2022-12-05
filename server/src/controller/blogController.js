@@ -35,7 +35,7 @@ const getAllBlog = async (req, res) => {
   try {
     const allBlog = await blogService.getAllBlog();
     if (!allBlog) {
-      return res.status(200).json({
+      return res.status(204).json({
         status: 204,
         success: true,
         message: "글이 없습니다.",
@@ -132,7 +132,33 @@ const getBlogByUser = async (req, res) => {
   }
 };
 
-const getBlogByBlogId = async (req, res) => {};
+const getBlogByBlogId = async (req, res) => {
+  const { blogId } = req.params;
+  try {
+    const detailBlog = await blogService.getBlogByBlogId(blogId);
+    if (!detailBlog) {
+      return res.status(400).json({
+        status: 400,
+        success: true,
+        message: "잘못된 요청입니다.",
+      });
+    } else {
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "글 세부 조회 성공",
+        data: detailBlog,
+      });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({
+      status: 500,
+      success: false,
+      message: "서버 내부 오류",
+    });
+  }
+};
 
 const blogController = {
   createBlog,
