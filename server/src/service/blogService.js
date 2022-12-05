@@ -1,6 +1,23 @@
 import Blog from "../Models/Blog.js";
 import mongoose from "mongoose";
 
+const createBlog = async (userId, title, image, content) => {
+  try {
+    const data = await new User({
+      _id: new mongoose.Types.ObjectId(),
+      user_id: mongoose.Types.ObjectId(userId),
+      title: title,
+      image: image,
+      content: content,
+    });
+
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 const updateBlog = async (blogId, title, image, content) => {
   try {
     blogId = mongoose.Types.ObjectId(blogId);
@@ -41,6 +58,7 @@ const getBlogByUser = async (userId) => {
 };
 
 const blogController = {
+  createBlog,
   updateBlog,
   deleteBlog,
   getBlogByUser,
