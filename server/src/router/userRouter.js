@@ -1,3 +1,5 @@
+/*
+
 import { Router } from "express";
 import { userController } from "../controller/index.js";
 
@@ -8,3 +10,4 @@ userRouter.post("/signup", userController.register);
 userRouter.put("/:id", userController.updatecontroll);
 
 export default userRouter;
+*/

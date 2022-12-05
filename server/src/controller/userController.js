@@ -1,5 +1,8 @@
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+/*
+
+import mongoose from "mongoose";
+import config from "./config/index.js";
+
 require("dotenv").config({ path: "variables.env" });
 
 //몽고db연결확인
@@ -67,3 +70,4 @@ const userController = {
 };
 
 export default userController;
+*/

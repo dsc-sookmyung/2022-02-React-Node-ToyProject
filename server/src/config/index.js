@@ -10,4 +10,5 @@ export default {
   mongoURL: process.env.MONGODB_URL,
   AWS_ACCESS_KEY_ID: process.env.AWS_ACCESS_KEY_ID,
   AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
+  PORT: process.env.PORT,
 };
