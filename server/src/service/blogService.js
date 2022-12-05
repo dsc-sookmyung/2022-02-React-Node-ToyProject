@@ -57,7 +57,18 @@ const deleteBlog = async (blogId) => {
 
 const getBlogByUser = async (userId) => {
   try {
-    const data = await Blog.find({ user_id: userId }).sort({ created_at: -1 });
+    const user_id = mongoose.Types.ObjectId(userId);
+    const data = await Blog.find({ user_id: user_id }).sort({ created_at: -1 });
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+const getAllBlog = async () => {
+  try {
+    const data = await Blog.find();
     return data;
   } catch (error) {
     console.log(error);
@@ -70,6 +81,7 @@ const blogController = {
   updateBlog,
   deleteBlog,
   getBlogByUser,
+  getAllBlog,
 };
 
 export default blogController;
