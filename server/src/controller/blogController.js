@@ -39,14 +39,16 @@ const getAllBlog = async (req, res) => {};
  */
 const updateBlog = async (req, res) => {
   const { blogId } = req.params;
-  const { title, image, content } = req.body;
+  const imageLocation = req.file.location;
+  const { userId, title, content } = req.body;
+
   try {
-    const updateBlog = await blogService.updateBlog(blogId, title, image, content);
+    const updatedBlog = await blogService.updateBlog(blogId, userId, title, imageLocation, content);
     return res.status(200).json({
       status: 200,
       success: true,
       message: "글 수정 성공",
-      data: updateBlog,
+      data: updatedBlog,
     });
   } catch (error) {
     console.log(error);
