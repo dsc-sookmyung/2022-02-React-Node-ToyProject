@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 const createBlog = async (userId, title, image, content) => {
   try {
-    const data = await new User({
+    const data = await new Blog({
       _id: new mongoose.Types.ObjectId(),
       user_id: mongoose.Types.ObjectId(userId),
       title: title,

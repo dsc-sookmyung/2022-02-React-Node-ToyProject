@@ -2,8 +2,7 @@ import express from "express";
 import { blogService } from "../service/index.js";
 
 const createBlog = async (req, res) => {
-  const image = req.file;
-  const imageLocation = image.location;
+  const imageLocation = req.file.location;
   const { userId, title, content } = req.body;
 
   try {
@@ -18,8 +17,8 @@ const createBlog = async (req, res) => {
       return res.status(200).json({
         status: 200,
         success: true,
-        message: "글 수정 성공",
-        data: updateBlog,
+        message: "글 생성 성공",
+        data: createdBlog,
       });
     }
   } catch (error) {
