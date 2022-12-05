@@ -25,8 +25,8 @@ const register = (req, res) => {
 };
 
 //로그인
-const loginctrl = (req, res) => {
-  User.findOne({ id: req.body.id, password: req.body.password }, (err, user) => {
+const loginctrl = async (req, res) => {
+  await User.findOne({ id: req.body.id, password: req.body.password }, (err, user) => {
     if (err) return res.status(500).json({ message: "에러" });
     else if (user) return res.status(200).json(user);
     else return res.status(404).json({ message: "유저없음" });
@@ -35,9 +35,9 @@ const loginctrl = (req, res) => {
 
 //유저업데이트
 
-const updatecontroll = (req, res) => {
+const updatecontroll = async (req, res) => {
   console.log(req.params.id);
-  User.findOneAndUpdate(
+  await User.findOneAndUpdate(
     { _id: req.params.id },
     {
       $set: {
