@@ -76,12 +76,24 @@ const getAllBlog = async () => {
   }
 };
 
+const getBlogByBlogId = async (blogId) => {
+  try {
+    const blog_id = mongoose.Types.ObjectId(blogId);
+    const data = await Blog.findById(blog_id);
+    return data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
 const blogController = {
   createBlog,
   updateBlog,
   deleteBlog,
   getBlogByUser,
   getAllBlog,
+  getBlogByBlogId,
 };
 
 export default blogController;
