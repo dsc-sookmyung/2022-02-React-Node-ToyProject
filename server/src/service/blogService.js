@@ -11,6 +11,7 @@ const createBlog = async (userId, title, image, content) => {
       content: content,
     });
 
+    await data.save();
     return data;
   } catch (error) {
     console.log(error);

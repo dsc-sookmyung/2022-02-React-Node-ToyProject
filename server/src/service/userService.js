@@ -9,6 +9,7 @@ const signupUser = async (nickname, password) => {
       password: password,
     });
 
+    await data.save();
     return data;
   } catch (error) {
     console.log(error);
@@ -18,15 +19,10 @@ const signupUser = async (nickname, password) => {
 
 const loginUser = async (nickname, password) => {
   try {
-    console.log(nickname);
-    console.log(password);
-
     const data = await User.findOne({
       nickname: nickname,
       password: password,
     });
-
-    console.log(data);
 
     return data;
   } catch (error) {
@@ -37,11 +33,7 @@ const loginUser = async (nickname, password) => {
 
 const updateUser = async (id, nickname, password) => {
   try {
-    console.log(id);
-
     const userid = mongoose.Types.ObjectId(id);
-
-    console.log(userid);
 
     const data = await User.findByIdAndUpdate(userid, {
       nickname: nickname,
