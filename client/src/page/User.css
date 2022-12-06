@@ -1,0 +1,78 @@
+.title_box{
+    color: palevioletred;
+    font-size: 50px;
+    font-weight: 500;
+    display: grid;
+    justify-content: center; 
+    Vertical-align: middle;
+    margin-top: 4%;
+}
+.hi_box{
+    color: palevioletred;
+    font-size: 30px;
+    font-weight: 500;
+    display: grid;
+    justify-content: center; 
+    Vertical-align: middle;
+    margin-top: 30px;
+}
+.div_box{
+    display: grid;
+    justify-content: center; 
+    Vertical-align: middle;
+    margin: 10px;
+}
+.edit_box{
+    display: flex;
+    justify-content: space-around;
+}
+.input_box{
+    width: 300px;
+    height: 40px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.button_box{
+    width: 308px;
+    height: 30px;
+    margin-bottom: 5px;
+}
+.editButton_box{
+    font-size: 18px;
+    width: 120px;
+    height: 35px;
+    margin-top: 30px;
+}
+.submit_box{
+    width: 308px;
+    height: 80px;
+    margin-top: 5px;
+}
+.message{
+    color: rgb(221, 49, 49);
+}
+.navigate_left{
+    flex: 1;
+    float: left;
+}
+.navigate_mid{
+    flex: 3;
+    float:none;
+}
+.navigate_right{
+    flex: 1;
+    float: right;
+    
+}
+.navigate_wrapper{
+    height: 50px;
+    line-height: 50px;
+    background: papayawhip;
+}
+.navigate_title {
+    font-size: 30px;
+    font-weight: 500;
+    float: left;
+    color: palevioletred;
+    margin-left: 50px;
+}
