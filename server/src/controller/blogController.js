@@ -1,6 +1,10 @@
 import express from "express";
 import { blogService } from "../service/index.js";
 
+/**
+ * @route POST /blog
+ * @desc create post
+ */
 const createBlog = async (req, res) => {
   const imageLocation = req.file.location;
   const { userId, title, content } = req.body;
@@ -31,6 +35,10 @@ const createBlog = async (req, res) => {
   }
 };
 
+/**
+ * @route GET /blog
+ * @desc get all post
+ */
 const getAllBlog = async (req, res) => {
   try {
     const allBlog = await blogService.getAllBlog();
@@ -132,6 +140,10 @@ const getBlogByUser = async (req, res) => {
   }
 };
 
+/**
+ * @route GET /blog/:blogId/detail
+ * @desc get post by blogId
+ */
 const getBlogByBlogId = async (req, res) => {
   const { blogId } = req.params;
   try {
