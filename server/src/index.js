@@ -8,7 +8,11 @@ const app = express();
 
 connectDB();
 
-app.use(cors());
+app.use(
+  cors({
+    origin: [config.ORIGIN],
+  })
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 

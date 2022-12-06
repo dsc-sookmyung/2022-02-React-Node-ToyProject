@@ -12,4 +12,5 @@ export default {
   AWS_SECRET_ACCESS_KEY: process.env.AWS_SECRET_ACCESS_KEY,
   bucketName: process.env.AWS_S3_BUCKET,
   PORT: process.env.PORT,
+  ORIGIN: process.env.ORIGIN,
 };
