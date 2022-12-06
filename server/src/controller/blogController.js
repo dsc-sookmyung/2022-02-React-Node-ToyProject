@@ -65,10 +65,10 @@ const getAllBlog = async (req, res) => {
 const updateBlog = async (req, res) => {
   const { blogId } = req.params;
   const imageLocation = req.file.location;
-  const { userId, title, content } = req.body;
+  const { title, content } = req.body;
 
   try {
-    const updatedBlog = await blogService.updateBlog(blogId, userId, title, imageLocation, content);
+    const updatedBlog = await blogService.updateBlog(blogId, title, imageLocation, content);
     return res.status(200).json({
       status: 200,
       success: true,

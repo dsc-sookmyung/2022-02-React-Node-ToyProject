@@ -19,13 +19,11 @@ const createBlog = async (userId, title, image, content) => {
   }
 };
 
-const updateBlog = async (blogId, userId, title, image, content) => {
+const updateBlog = async (blogId, title, image, content) => {
   try {
     blogId = mongoose.Types.ObjectId(blogId);
-    userId = mongoose.Types.ObjectId(userId);
     const updateData = {
       title: title,
-      user_id: userId,
       image: image, //이미지 업데이트 기능 추가
       content: content,
     };
