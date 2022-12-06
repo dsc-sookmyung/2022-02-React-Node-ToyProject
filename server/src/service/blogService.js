@@ -1,4 +1,4 @@
-import Blog from "../Models/Blog.js";
+import Blog from "../models/Blog.js";
 import mongoose from "mongoose";
 
 const createBlog = async (userId, title, image, content) => {
