@@ -15,7 +15,6 @@
     - ex) 본인이름/feature/#`issue num`
 - 해당 branch 작업 완료 후 PR 보내기
     - 항상 local에서 충돌 해결 후 → remote에 올리기
-    - reviewer에 서로 tag후 code-review
     - comment 전 merge 불가!
 
 #### branch 구조
