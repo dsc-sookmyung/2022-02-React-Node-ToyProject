@@ -77,12 +77,20 @@ const updateBlog = async (req, res) => {
 
   try {
     const updatedBlog = await blogService.updateBlog(blogId, title, imageLocation, content);
-    return res.status(200).json({
-      status: 200,
-      success: true,
-      message: "글 수정 성공",
-      data: updatedBlog,
-    });
+    if (!updatedBlog) {
+      return res.status(400).json({
+        status: 400,
+        success: false,
+        message: "잘못된 요청입니다",
+      });
+    } else {
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "글 수정 성공",
+        data: updatedBlog,
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -101,11 +109,19 @@ const deleteBlog = async (req, res) => {
   const { blogId } = req.params;
   try {
     const deleteBlog = await blogService.deleteBlog(blogId);
-    return res.status(200).json({
-      status: 200,
-      success: true,
-      message: "글 삭제 성공",
-    });
+    if (!deleteBlog) {
+      return res.status(400).json({
+        status: 400,
+        success: false,
+        message: "잘못된 요청입니다",
+      });
+    } else {
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "글 삭제 성공",
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json({
@@ -124,12 +140,20 @@ const getBlogByUser = async (req, res) => {
   const { userId } = req.params;
   try {
     const getBlogByUser = await blogService.getBlogByUser(userId);
-    return res.status(200).json({
-      status: 200,
-      success: true,
-      message: "유저별 글 조회 성공",
-      data: getBlogByUser,
-    });
+    if (!getBlogByUser) {
+      return res.status(400).json({
+        status: 400,
+        success: false,
+        message: "잘못된 요청입니다",
+      });
+    } else {
+      return res.status(200).json({
+        status: 200,
+        success: true,
+        message: "유저별 글 조회 성공",
+        data: getBlogByUser,
+      });
+    }
   } catch (error) {
     console.log(error);
     res.status(500).json({

@@ -5,7 +5,7 @@ info:
   description: "[22-23 GDSC Sookmyung 3기]  1분기 React-Node 토이프로젝트를 위한 저장소"
 servers:
   - description: "Server"
-    url: http://localhost:3000
+    url: http://3.35.184.0:3000
 # API 요청 경로 및 데이터 세팅
 paths:
   /blog:
@@ -257,6 +257,22 @@ paths:
                       __v:
                         type: number
                         example: 0
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
         "500":
           description: "객체 (JSON)"
           content:
@@ -302,6 +318,22 @@ paths:
                   message:
                     type: string
                     example: "글 삭제 성공"
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
         "500":
           description: "객체 (JSON)"
           content:
@@ -374,6 +406,22 @@ paths:
                         __v:
                           type: number
                           example: 0
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
         "500":
           description: "객체 (JSON)"
           content:
