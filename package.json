@@ -1,0 +1,19 @@
+{
+  "name": "2022-02-react-node-toyproject",
+  "version": "1.0.0",
+  "description": "[22-23 GDSC Sookmyung 3기]  1분기 React-Node 토이프로젝트를 위한 저장소",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dsc-sookmyung/2022-02-React-Node-ToyProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dsc-sookmyung/2022-02-React-Node-ToyProject/issues"
+  },
+  "homepage": "https://github.com/dsc-sookmyung/2022-02-React-Node-ToyProject#readme"
+}
