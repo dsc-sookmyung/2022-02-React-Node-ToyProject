@@ -8,5 +8,4 @@ router.use("/blog", blogRouter);
 
 router.use("/user", userRouter);
 
-
 export default router;
