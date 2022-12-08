@@ -5,15 +5,439 @@ info:
   description: "[22-23 GDSC Sookmyung 3기]  1분기 React-Node 토이프로젝트를 위한 저장소"
 servers:
   - description: "Server"
-    url: http://localhost:3000
+    url: http://3.35.184.0:3000
 # API 요청 경로 및 데이터 세팅
 paths:
+  /user/signup:
+    post:
+      summary: 회원을 생성한다.
+      description: user db에 유저 정보 저장
+      tags:
+        - 회원 생성
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                nickname:
+                  type: string
+
+      responses:
+        "200":
+          description: "저장 성공"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "회원 가입 성공"
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "638c4fc4cf3aee101b9a07a7"
+                      id:
+                        type: string
+                        example: "hy08207"
+                      password:
+                        type: string
+                        example: "12345"
+
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
+        "500":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "서버 내부 오류"
+  /user/login:
+    post:
+      summary: 로그인기능 수행.
+      description: user db에 저장된 유저 정보 가져옴옴
+      tags:
+        - 로그인
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                nickname:
+                  type: string
+
+      responses:
+        "200":
+          description: "저장 성공"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "로그인 성공"
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "638c4fc4cf3aee101b9a07a7"
+                      id:
+                        type: string
+                        example: "hy08207"
+                      password:
+                        type: string
+                        example: "12345"
+
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
+        "500":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "서버 내부 오류"
+  /user/{id}:
+    put:
+      summary: 회원정보를 수정한다.
+      description: Id와 비밀번호를 통해 회원정보를 수정할 수 있게 한다.
+      tags:
+        - 회원정보 수정
+      parameters:
+        - name: id
+          in: path
+          description: 유저의 ID
+          required: true
+          schema:
+            type: string
+
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                nickname:
+                  type: string
+      responses:
+        "200":
+          description: "저장 성공"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "유저 업데이트 성공"
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "638c4fc4cf3aee101b9a07a7"
+                      id:
+                        type: string
+                        example: "hy08207"
+                      password:
+                        type: string
+                        example: "1234568"
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
+        "500":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "서버 내부 오류"
+  /blog:
+    post:
+      summary: 블로그 글을 생성한다.
+      description: Blog DB에 document를 삽입한다.
+      tags:
+        - 글 생성
+      requestBody:
+        description: request Body에 들어가야하는 data
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: string
+                title:
+                  type: string
+                content:
+                  type: string
+                image:
+                  type: string
+            encoding:
+              image: # Property name
+                contentType: image/png, image/jpeg
+      responses:
+        "200":
+          description: "객체 (JSON). data는 블로그 글의 document다."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "글 생성 성공"
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "638c4fc4cf3aee101b9a07a7"
+                      user_id:
+                        type: string
+                        example: "638e521345bdef928e561303"
+                      title:
+                        type: string
+                        example: "글 제목"
+                      image:
+                        type: string
+                        example: "https://insopt-bucket123.s3.amazonaws.com/1234"
+                      content:
+                        type: string
+                        example: "글 내용"
+                      created_at:
+                        type: string
+                        example: "2022-12-04T07:44:04.106Z"
+                      __v:
+                        type: number
+                        example: 0
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
+        "500":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "서버 내부 오류"
+    get:
+      summary: 모든 블로그 글을 조회한다.
+      description: Blog DB의 모든 document를 조회한다.
+      tags:
+        - 글 전체 조회
+      responses:
+        "200":
+          description: "객체 (JSON). data는 블로그 글의 document의 배열이다."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "글 목록 전체 조회 성공"
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          example: "638c4fc4cf3aee101b9a07a7"
+                        user_id:
+                          type: string
+                          example: "638e521345bdef928e561303"
+                        title:
+                          type: string
+                          example: "글 제목"
+                        image:
+                          type: string
+                          example: "https://insopt-bucket123.s3.amazonaws.com/1234"
+                        content:
+                          type: string
+                          example: "글 내용"
+                        created_at:
+                          type: string
+                          example: "2022-12-04T07:44:04.106Z"
+                        __v:
+                          type: number
+                          example: 0
+        "204":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 204
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "글이 없습니다"
+        "500":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "서버 내부 오류"
   /blog/{blogId}:
     put:
       summary: 블로그 글을 업데이트한다.
-      description: Blog DB의 title, content, image을 업데이트한다.
+      description: blogId를 통해 Blog DB의 title, content, image을 업데이트한다.
       tags:
-        - Put 방식
+        - 글 수정
       parameters:
         - name: blogId
           in: path
@@ -21,9 +445,26 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        description: request Body에 들어가야하는 data
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                title:
+                  type: string
+                content:
+                  type: string
+                image:
+                  type: string
+            encoding:
+              image: # Property name
+                contentType: image/png, image/jpeg
       responses:
         "200":
-          description: "객체 (JSON). data는 블로그 글의 스키마다."
+          description: "객체 (JSON). data는 블로그 글의 document다."
           content:
             application/json:
               schema:
@@ -46,18 +487,38 @@ paths:
                         example: "638c4fc4cf3aee101b9a07a7"
                       user_id:
                         type: string
+                        example: "638e521345bdef928e561303"
                       title:
                         type: string
+                        example: "글 제목"
                       image:
                         type: string
-                        example: "url"
+                        example: "https://insopt-bucket123.s3.amazonaws.com/1234"
                       content:
                         type: string
+                        example: "글 내용"
                       created_at:
                         type: string
                         example: "2022-12-04T07:44:04.106Z"
                       __v:
                         type: number
+                        example: 0
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
         "500":
           description: "객체 (JSON)"
           content:
@@ -76,9 +537,9 @@ paths:
                     example: "서버 내부 오류"
     delete:
       summary: 블로그 글을 삭제한다.
-      description: Blog DB의 title, content, image을 삭제한다.
+      description: blogId를 통해 Blog DB의 document를 삭제한다.
       tags:
-        - Delete 방식
+        - 글 삭제
       parameters:
         - name: blogId
           in: path
@@ -103,6 +564,22 @@ paths:
                   message:
                     type: string
                     example: "글 삭제 성공"
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
         "500":
           description: "객체 (JSON)"
           content:
@@ -122,9 +599,9 @@ paths:
   /blog/{userId}:
     get:
       summary: 유저ID를 통해 유저별 블로그 글을 조회한다.
-      description: Blog DB의 title, content, image을 업데이트한다.
+      description: userId를 통해 Blog DB의 document를 조회한다.
       tags:
-        - Get 방식
+        - 유저ID를 통한 글 조회
       parameters:
         - name: userId
           in: path
@@ -134,7 +611,7 @@ paths:
             type: string
       responses:
         "200":
-          description: "객체 (JSON). data는 블로그 글의 스키마다."
+          description: "객체 (JSON). data는 블로그 글의 document의 배열이다."
           content:
             application/json:
               schema:
@@ -159,19 +636,124 @@ paths:
                           example: "638c4fc4cf3aee101b9a07a7"
                         user_id:
                           type: string
+                          example: "638e521345bdef928e561303"
                         title:
                           type: string
+                          example: "글 제목"
                         image:
                           type: string
-                          example: "url"
+                          example: "https://insopt-bucket123.s3.amazonaws.com/1234"
                         content:
                           type: string
+                          example: "글 내용"
                         created_at:
                           type: string
                           example: "2022-12-04T07:44:04.106Z"
                         __v:
                           type: number
                           example: 0
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
+        "500":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "서버 내부 오류"
+  /blog/{blogId}/detail:
+    get:
+      summary: 블로그ID를 통해 블로그 글 하나를 조회한다.
+      description: 블로그ID를 통해 BlogDB에서 document를 조회한다.
+      tags:
+        - 블로그ID를 통한 글 조회
+      parameters:
+        - name: blogId
+          in: path
+          description: 글의 ID
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: "객체 (JSON). data는 블로그 글의 document다."
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "특정 글 조회 성공"
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "638c4fc4cf3aee101b9a07a7"
+                      user_id:
+                        type: string
+                        example: "638e521345bdef928e561303"
+                      title:
+                        type: string
+                        example: "글 제목"
+                      image:
+                        type: string
+                        example: "https://insopt-bucket123.s3.amazonaws.com/1234"
+                      content:
+                        type: string
+                        example: "글 내용"
+                      created_at:
+                        type: string
+                        example: "2022-12-04T07:44:04.106Z"
+                      __v:
+                        type: number
+                        example: 0
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다."
         "500":
           description: "객체 (JSON)"
           content:
