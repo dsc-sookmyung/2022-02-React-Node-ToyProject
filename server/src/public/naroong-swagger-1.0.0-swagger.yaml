@@ -1,0 +1,261 @@
+openapi: 3.0.0
+info:
+  version: "1.0.0"
+  title: "2022-02-react-node-toyproject"
+  description: "[22-23 GDSC Sookmyung 3기]  1분기 React-Node 토이프로젝트를 위한 저장소"
+servers:
+  # Added by API Auto Mocking Plugin
+
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/naroong/API_example/1.0.0
+  - description: "Server"
+    url: http://localhost:3000
+
+paths:
+  /user/signup:
+    post:
+      summary: 회원을 생성한다.
+      description:  user db에 유저 정보 저장
+      tags:
+        - 회원 생성
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                nickname:
+                  type: string
+              
+      responses:
+        "200":
+          description: "저장 성공"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "회원 가입 성공"
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "638c4fc4cf3aee101b9a07a7"
+                      id:
+                        type: string
+                        example: "hy08207"
+                      password:
+                        type: string
+                        example: "12345"
+                      
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
+        "500":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "서버 내부 오류"
+  /user/login:
+    post:
+      summary: 로그인기능 수행.
+      description:  user db에 저장된 유저 정보 가져옴옴
+      tags:
+        - 로그인인
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                nickname:
+                  type: string
+              
+      responses:
+        "200":
+          description: "저장 성공"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "로그인 성공"
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "638c4fc4cf3aee101b9a07a7"
+                      id:
+                        type: string
+                        example: "hy08207"
+                      password:
+                        type: string
+                        example: "12345"
+                      
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
+        "500":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "서버 내부 오류"                  
+  /user/{id}:
+    put:
+      summary: 회원정보를 수정한다.
+      description: Id와 비밀번호를 통해 회원정보를 수정할 수 있게 한다.
+      tags:
+        - 회원정보 수정
+      parameters:
+        - name: id
+          in: path
+          description: 유저의 ID
+          required: true
+          schema:
+            type: string
+        
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                password:
+                  type: string
+                nickname:
+                  type: string
+      responses:
+        "200":
+          description: "저장 성공"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 200
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "유저 업데이트 성공"
+                  data:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                        example: "638c4fc4cf3aee101b9a07a7"
+                      id:
+                        type: string
+                        example: "hy08207"
+                      password:
+                        type: string
+                        example: "1234568"
+        "400":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 400
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "잘못된 요청입니다"
+        "500":
+          description: "객체 (JSON)"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: integer
+                    example: 500
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "서버 내부 오류"
