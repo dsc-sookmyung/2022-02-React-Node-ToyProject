@@ -1,26 +1,13 @@
-import { React, createContext, useState, useEffect, useCallback } from "react";
-
-export const LoginContext = createContext({ login: false, setLogin: () => {} })
+import { React, useCallback } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Navigation(props) {
-
-    const [login, setLogin] = useState(false)
-
-    const getLogin = async () => {
-        if(await sessionStorage.getItem("loginId") !== null){
-            setLogin(true)
-        } else {
-            setLogin(false)
-        }
-    }
-
-    useEffect(() => {
-        getLogin()
-    }, [login]);
+    const navigate = useNavigate()
 
     const handleSignOut = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
         sessionStorage.clear()
-        setLogin(false)
+        navigate('/blog')
+        window.location.reload()
     }, [])
 
   return (
@@ -31,7 +18,7 @@ function Navigation(props) {
                 <div class="navigate_title">MY BLOG</div>
             </a>
         </div>
-        {login ? (
+        {sessionStorage.getItem("loginId") ? (
             <div class="navigate_right">
                 <a href="/blog/:userId">
                     <div class="navigate_title">MY PAGE</div>

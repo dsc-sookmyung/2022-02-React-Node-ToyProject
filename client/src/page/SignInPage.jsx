@@ -1,52 +1,41 @@
-import { React, useContext, useState, useEffect, useCallback } from "react";
+import { React, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import { LoginContext } from '../component/Navigation';
 
 function SignInPage(props) {
-    // const server = ''
+    const server = 'http://3.35.184.0:3000'
     const navigate = useNavigate()
     const sessionStorage = window.sessionStorage
-    const { login, setLogin } = useContext(LoginContext)
 
-    // 아이디, 비밀번호
-    const [id, setId] = useState('')
+    // 닉네임, 비밀번호
+    const [nickname, setNickname] = useState('')
     const [password, setPassword] = useState('')
 
     const handleSubmit = useCallback(
         async (e: React.FormEvent<HTMLFormElement>) => {
             e.preventDefault()
             try {
-                /*
                 await axios
-                .get(`${server}/user/login`)
+                .post(`${server}/user/login`, {
+                    nickname: nickname,
+                    password: password
+                })
                 .then((res) => {
                     console.log('response:', res)
                     if (res.status === 200) {
-                        const users = await response.json()
-                        const user = users.find((user) => user.id === id)
-                        if (!user || user.password !== password) {
-                            alert("아이디 또는 비밀번호가 일치하지 않습니다.")
-                        }
-                        else {
-                            sessionStorage.setItem("loginId", id)
-                            navigate("/blog")
-                        }
+                        sessionStorage.setItem("loginId", res.data.data._id)
+                        sessionStorage.setItem("loginNickname", nickname)
+                        navigate("/blog")
+                        window.location.reload()
                     }
-                })
-                */ 
-                    sessionStorage.setItem("loginId", id);
-                    setLogin(true)
-                    navigate("/blog")
-                    window.location.reload()
-                } catch (err) {
+                })} catch (err) {
                     console.error(err)
                 }
-            }, [id,password, navigate]
+            }, [nickname,password, navigate]
     )
     
-    const handleId = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
-        setId(e.target.value)
+    const handleNickname = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+        setNickname(e.target.value)
     }, [])
 
     const handlePassword = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,9 +46,9 @@ function SignInPage(props) {
         <form onSubmit={handleSubmit}>
             <span class="title_box">SignIn</span>
             <div class="div_box">
-                ID
-                <input class="input_box" id="id" placeholder="ID"
-                    value={id} onChange={handleId} />
+                Nickname
+                <input class="input_box" id="nickname" placeholder="Nickname"
+                    value={nickname} onChange={handleNickname} />
             </div>
             <div class="div_box">
                 Password

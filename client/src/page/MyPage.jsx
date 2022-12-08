@@ -1,22 +1,20 @@
-import { React, useEffect, useState, useCallback } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import EditProfilePage from "./EditProfilePage";
 
 function MyPage(props) {
-    // const server = ''
+    //const server = 'http://3.35.184.0:3000'
     const navigate = useNavigate()
-    const userId = sessionStorage.getItem("loginId")
+    const nickname = sessionStorage.getItem("loginNickname")
+    //const id = sessionStorage.getItem("loginid")
 
-    const [posts, setPosts] = useState([])
+    //const [posts, setPosts] = useState([])
 
-    useEffect(() => {
-        /*
-        axios.get(`${server}/blog/${userId})
+    /*useEffect(() => {
+        axios.get(`${server}/blog/${id}`)
           .then((response)=>(setPosts(response.data)))
           .catch((error)=>(console.log(error)))
-        */
-    }, [])
+    }, [])*/
 
     const handleClick = useCallback(
         async (e: React.FormEvent<HTMLFormElement>) => {
@@ -27,24 +25,23 @@ function MyPage(props) {
             } catch (err) {
                 console.error(err)
             }
-        }, //[navigate]
+        }, [navigate]
     )
 
     return (
-        /*
         <div>
             <div class="edit_box">
                 <span class="hi_box">
-                    {userId}님, 안녕하세요!
+                    {nickname}님, 안녕하세요! 
                 </span>
-                <button class="editButton_box" onSubmit={handleSubmit}>
+                <button class="editButton_box" onClick={handleClick}>
                     Edit Profile
                 </button>
             </div>
-            <div>
+            {/*<div>
                 {posts.map((post) => {
                     return (
-                        <Post
+                        <tmpPost
                             key={post.id}
                             id={post.id}
                             title={post.title}
@@ -53,16 +50,7 @@ function MyPage(props) {
                             created_at={post.created_at} />
                     );
                 })}
-            </div>
-        </div>
-        */
-        <div class="edit_box">
-            <span class="hi_box">
-                {userId}님, 안녕하세요!
-            </span>
-            <button class="editButton_box" onClick={handleClick}>
-                Edit Profile
-            </button>
+            </div>*/}
         </div>
     )
 }
