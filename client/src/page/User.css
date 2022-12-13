@@ -47,7 +47,7 @@
     width: 308px;
     height: 80px;
     margin-top: 5px;
-}
+}react s3 이미지 불러오기
 .message{
     color: rgb(221, 49, 49);
 }
@@ -67,7 +67,7 @@
 .navigate_wrapper{
     height: 50px;
     line-height: 50px;
-    background: papayawhip;
+    background: #ffefd6;
 }
 .navigate_title {
     font-size: 30px;
@@ -76,3 +76,4 @@
     color: palevioletred;
     margin-left: 50px;
 }
+

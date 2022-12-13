@@ -1,21 +1,20 @@
-import { React, useEffect, useState, useCallback } from "react";
+import { React, useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import EditProfilePage from "./EditProfilePage";
+import MainPostList from "../component/MainPostList";
 
 function MyPage(props) {
-    // const server = ''
+    const server = 'http://3.35.184.0:3000'
     const navigate = useNavigate()
-    const userId = sessionStorage.getItem("loginId")
+    const nickname = sessionStorage.getItem("loginNickname")
+    const id = sessionStorage.getItem("loginId")
 
     const [posts, setPosts] = useState([])
 
     useEffect(() => {
-        /*
-        axios.get(`${server}/blog/${userId})
-          .then((response)=>(setPosts(response.data)))
+        axios.get(`${server}/blog/${id}`)
+          .then((response)=>(setPosts(response.data.data)))
           .catch((error)=>(console.log(error)))
-        */
     }, [])
 
     const handleClick = useCallback(
@@ -27,42 +26,23 @@ function MyPage(props) {
             } catch (err) {
                 console.error(err)
             }
-        }, //[navigate]
+        }, [navigate]
     )
 
     return (
-        /*
         <div>
             <div class="edit_box">
                 <span class="hi_box">
-                    {userId}님, 안녕하세요!
+                    {nickname}님, 안녕하세요! 
                 </span>
-                <button class="editButton_box" onSubmit={handleSubmit}>
+                <button class="editButton_box" onClick={handleClick}>
                     Edit Profile
                 </button>
             </div>
             <div>
-                {posts.map((post) => {
-                    return (
-                        <Post
-                            key={post.id}
-                            id={post.id}
-                            title={post.title}
-                            image={post.image}
-                            content={post.content}
-                            created_at={post.created_at} />
-                    );
-                })}
+                <MainPostList posts={posts} onClickItem={(item) => {
+                    navigate(`/blog/${item._id}/detail`);}}></MainPostList>
             </div>
-        </div>
-        */
-        <div class="edit_box">
-            <span class="hi_box">
-                {userId}님, 안녕하세요!
-            </span>
-            <button class="editButton_box" onClick={handleClick}>
-                Edit Profile
-            </button>
         </div>
     )
 }
